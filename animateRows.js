@@ -1,13 +1,13 @@
 document.addEventListener("DOMContentLoaded", function () {
   const rows = document.querySelectorAll("tbody tr");
   const blocks = [
-    { start: 2, end: 8 },
-    { start: 9, end: 16 },
+    { start: 1, end: 8 },
+    { start: 9, end: 15 },
+    { start: 16, end: 16 },
     { start: 17, end: 17 },
     { start: 18, end: 18 },
-    { start: 19, end: 19 },
-    { start: 20, end: 21 },
-    { start: 22, end: 23 },
+    { start: 19, end: 20 },
+    { start: 21, end: 23 },
     { start: 24, end: 30 },
     { start: 31, end: 34 },
     { start: 35, end: rows.length },
