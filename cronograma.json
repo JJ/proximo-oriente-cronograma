@@ -1,0 +1,84 @@
+{
+  "periodos": [
+    {
+      "nombre": "Sumerios",
+      "inicio": -2900,
+      "fin": -2350
+    },
+    {
+      "nombre": "Imperio Acadio",
+      "inicio": -2335,
+      "fin": -2154
+    },
+    {
+      "nombre": "III Dinastía de Ur",
+      "inicio": -2111,
+      "fin": -2004
+    },
+    {
+      "nombre": "Cambios en el II Milenio a.C",
+      "inicio": -2000,
+      "fin": null
+    },
+    {
+      "nombre": "Reinos combatientes: Isin y Larsa",
+      "inicio": -2004,
+      "fin": -1792
+    },
+    {
+      "nombre": "I Dinastía de Babilonia",
+      "inicio": -1894,
+      "fin": -1595
+    },
+    {
+      "nombre": "La Babilonia Casita",
+      "inicio": -1570,
+      "fin": -1187
+    },
+    {
+      "nombre": "Imperio Neobabilónico",
+      "inicio": -600,
+      "fin": -500
+    },
+    {
+      "nombre": "Reino Antiguo Asirio",
+      "inicio": -1950,
+      "fin": -1750
+    },
+    {
+      "nombre": "Reino Medio Asirio",
+      "inicio": -1550,
+      "fin": -1056
+    },
+    {
+      "nombre": "Imperio Neoasirio",
+      "inicio": -934,
+      "fin": -609
+    },
+    {
+      "nombre": "Reino de Mitanni",
+      "inicio": -1700,
+      "fin": -1300
+    },
+    {
+      "nombre": "Reino Antiguo Hitita",
+      "inicio": -1650,
+      "fin": -1500
+    },
+    {
+      "nombre": "Reino Medio Hitita",
+      "inicio": -1500,
+      "fin": -1370
+    },
+    {
+      "nombre": "Reino Nuevo Hitita",
+      "inicio": -1370,
+      "fin": -1182
+    },
+    {
+      "nombre": "El Imperio Persa",
+      "inicio": -559,
+      "fin": -323
+    }
+  ]
+}
