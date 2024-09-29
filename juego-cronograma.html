@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Cronograma</title>
+    <style>
+        .periodo {
+            padding: 10px;
+            margin: 5px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            cursor: move;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body>
+    <script type="application/json" id="cronograma-data">
+    {
+  "periodos": [
+    {
+      "nombre": "Sumerios",
+      "inicio": -2900,
+      "fin": -2350
+    },
+    {
+      "nombre": "Imperio Acadio",
+      "inicio": -2335,
+      "fin": -2154
+    },
+    {
+      "nombre": "III Dinastía de Ur",
+      "inicio": -2111,
+      "fin": -2004
+    },
+    {
+      "nombre": "Cambios en el II Milenio a.C",
+      "inicio": -2000,
+      "fin": null
+    },
+    {
+      "nombre": "Reinos combatientes: Isin y Larsa",
+      "inicio": -2004,
+      "fin": -1792
+    },
+    {
+      "nombre": "I Dinastía de Babilonia",
+      "inicio": -1894,
+      "fin": -1595
+    },
+    {
+      "nombre": "La Babilonia Casita",
+      "inicio": -1570,
+      "fin": -1187
+    },
+    {
+      "nombre": "Imperio Neobabilónico",
+      "inicio": -600,
+      "fin": -500
+    },
+    {
+      "nombre": "Reino Antiguo Asirio",
+      "inicio": -1950,
+      "fin": -1750
+    },
+    {
+      "nombre": "Reino Medio Asirio",
+      "inicio": -1550,
+      "fin": -1056
+    },
+    {
+      "nombre": "Imperio Neoasirio",
+      "inicio": -934,
+      "fin": -609
+    },
+    {
+      "nombre": "Reino de Mitanni",
+      "inicio": -1700,
+      "fin": -1300
+    },
+    {
+      "nombre": "Reino Antiguo Hitita",
+      "inicio": -1650,
+      "fin": -1500
+    },
+    {
+      "nombre": "Reino Medio Hitita",
+      "inicio": -1500,
+      "fin": -1370
+    },
+    {
+      "nombre": "Reino Nuevo Hitita",
+      "inicio": -1370,
+      "fin": -1182
+    },
+    {
+      "nombre": "El Imperio Persa",
+      "inicio": -559,
+      "fin": -323
+    }
+  ]
+}
+    </script>
+    <h1>Ordena los Periodos Históricos</h1>
+    <div id="periodos" class="container"></div>
+    <button onclick="verificarOrden()">Verificar Orden</button>
+    <p id="mensaje"></p>
+
+    <script>
+        let periodos = [];
+
+        // Cargar el archivo JSON desde el elemento cronograma-data
+        window.addEventListener('DOMContentLoaded', () => {
+            const data = document.getElementById('cronograma-data');
+            periodos = JSON.parse(data.textContent).periodos;
+            mostrarPeriodos();
+        });
+
+        // Mostrar los periodos en orden aleatorio
+        function mostrarPeriodos() {
+            const container = document.getElementById('periodos');
+            container.innerHTML = '';
+            periodos.sort(() => Math.random() - 0.5);
+            periodos.forEach((periodo, index) => {
+                const div = document.createElement('div');
+                div.className = 'periodo';
+                div.draggable = true;
+                div.innerText = periodo.nombre;
+                div.dataset.index = index;
+                div.addEventListener('dragstart', dragStart);
+                div.addEventListener('dragover', dragOver);
+                div.addEventListener('drop', drop);
+                container.appendChild(div);
+            });
+        }
+
+        let draggedElement = null;
+
+        function dragStart(event) {
+            draggedElement = event.target;
+        }
+
+        function dragOver(event) {
+            event.preventDefault();
+        }
+
+        function drop(event) {
+            event.preventDefault();
+            const target = event.target;
+            if (target.className === 'periodo') {
+                const container = document.getElementById('periodos');
+                const children = Array.from(container.children);
+                const draggedIndex = children.indexOf(draggedElement);
+                const targetIndex = children.indexOf(target);
+                if (draggedIndex < targetIndex) {
+                    container.insertBefore(draggedElement, target.nextSibling);
+                } else {
+                    container.insertBefore(draggedElement, target);
+                }
+            }
+        }
+
+        function verificarOrden() {
+            const container = document.getElementById('periodos');
+            const children = Array.from(container.children);
+            let correcto = true;
+            let mensaje = '';
+
+            for (let i = 0; i < children.length; i++) {
+                const index = children[i].dataset.index;
+                if (index != i) {
+                    correcto = false;
+                    mensaje = `Te has equivocado en el periodo: ${children[i].innerText}`;
+                    break;
+                }
+            }
+
+            if (correcto) {
+                mensaje = '¡Correcto! Has ordenado todos los periodos correctamente.';
+            }
+
+            document.getElementById('mensaje').innerText = mensaje;
+        }
+    </script>
+</body>
+</html>
