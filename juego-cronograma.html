@@ -112,11 +112,15 @@
 
     <script>
         let periodos = [];
+        let sortedPeriodos = [];
 
         // Cargar el archivo JSON desde el elemento cronograma-data
         window.addEventListener('DOMContentLoaded', () => {
             const data = document.getElementById('cronograma-data');
-            periodos = JSON.parse(data.textContent).periodos;
+            const unsortedPeriodos = JSON.parse(data.textContent).periodos;
+            sortedPeriodos = unsortedPeriodos.sort((a, b) => a.inicio - b.inicio);
+            // Copiar los periodos para no modificar el original
+            periodos = [...sortedPeriodos];
             mostrarPeriodos();
         });
 
@@ -171,6 +175,7 @@
             let mensaje = '';
 
             for (let i = 0; i < children.length; i++) {
+                console.log("Elemento ", children[i].innerText, " tiene indice ", sortedPeriodos[i].nombre );
                 const index = children[i].dataset.index;
                 if (index != i) {
                     correcto = false;
