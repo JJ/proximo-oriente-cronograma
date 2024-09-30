@@ -43,11 +43,6 @@
       "fin": -2004
     },
     {
-      "nombre": "Cambios en el II Milenio a.C",
-      "inicio": -2000,
-      "fin": null
-    },
-    {
       "nombre": "Reinos combatientes: Isin y Larsa",
       "inicio": -2004,
       "fin": -1792
@@ -180,7 +175,6 @@
             let mensaje = '';
 
             for (let i = 0; i < children.length; i++) {
-                console.log("Elemento ", children[i].innerText, " tiene indice ", sortedPeriodos[i].nombre );
                 const index = children[i].dataset.index;
                 if (children[i].innerText != sortedPeriodos[i].nombre) {
                     correcto = false;
