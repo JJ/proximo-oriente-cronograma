@@ -182,7 +182,7 @@
             for (let i = 0; i < children.length; i++) {
                 console.log("Elemento ", children[i].innerText, " tiene indice ", sortedPeriodos[i].nombre );
                 const index = children[i].dataset.index;
-                if (index != i) {
+                if (children[i].innerText != sortedPeriodos[i].nombre) {
                     correcto = false;
                     mensaje = `Te has equivocado en el periodo: ${children[i].innerText}`;
                     break;
