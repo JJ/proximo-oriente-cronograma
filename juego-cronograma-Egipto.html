@@ -112,6 +112,11 @@
                 period.addEventListener('dragstart', handleDragStart);
                 period.addEventListener('dragover', handleDragOver);
                 period.addEventListener('drop', handleDrop);
+                period.addEventListener('touchstart', handleDragStart);
+                period.addEventListener('touchmove', handleDragOver);
+                period.addEventListener('touchend', handleDrop);
+
+
             });
         }
 
