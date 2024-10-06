@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Egipto Cronograma Juego</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .period {
+            padding: 10px;
+            margin: 5px;
+            border: 1px solid #ccc;
+            cursor: grab;
+        }
+        .correct {
+            background-color: #c8e6c9;
+        }
+    </style>
+</head>
+<body>
+    <script type="application/json" id="cronograma-data">
+        [
+  {
+    "Nombre": "Periodo Tinita",
+    "Fechas": "3000-2593 a. C",
+    "Dinastías": "I y II"
+  },
+  {
+    "Nombre": "Reino Antiguo",
+    "Fechas": "2592-2160 a. C",
+    "Dinastías": "III-VI"
+  },
+  {
+    "Nombre": "Primer Periodo Intermedio",
+    "Fechas": "2160-2000 a. C",
+    "Dinastías": "VII-XI"
+  },
+  {
+    "Nombre": "Reino Medio",
+    "Fechas": "2130-1800 a. C",
+    "Dinastías": "XI y XII"
+  },
+  {
+    "Nombre": "Segundo Periodo Intermedio",
+    "Fechas": "1799-1554 a. C",
+    "Dinastías": "XIII-XVII"
+  },
+  {
+    "Nombre": "Reino Nuevo",
+    "Fechas": "1553-1077 a. C",
+    "Dinastías": "XVIII-XX"
+  },
+  {
+    "Nombre": "Tercer Periodo Intermedio",
+    "Fechas": "1070-656 a. C",
+    "Dinastías": "XXI-XXV"
+  },
+  {
+    "Nombre": "Época Baja",
+    "Fechas": "656-332 a. C",
+    "Dinastías": "XXVI-XXXI"
+  },
+  {
+    "Nombre": "Época Helenística",
+    "Fechas": "332-30 a. C",
+    "Dinastías": "Ptolemaica"
+  }
+]
+    </script>
+
+    <h1>Ordena los periodos de Egipto</h1>
+    <div id="game-container"></div>
+    <button id="check-order">Verificar Orden</button>
+
+    <script>
+        const dataUrl = 'Egipto-cronograma.json';
+        let periods = [];
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const data = document.getElementById('cronograma-data');
+            periods = JSON.parse(data.textContent);
+            renderPeriods();
+        });
+
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        function renderPeriods() {
+            const container = document.getElementById('game-container');
+            container.innerHTML = '';
+            const shuffledPeriods = [...periods].sort(() => Math.random() - 0.5);
+            shuffledPeriods.forEach((period, index) => {
+                const div = document.createElement('div');
+                div.className = 'period';
+                div.draggable = true;
+                div.dataset.index = index;
+                div.innerText = period.Nombre;
+                container.appendChild(div);
+            });
+            addDragAndDrop();
+        }
+
+        function addDragAndDrop() {
+            const periods = document.querySelectorAll('.period');
+            periods.forEach(period => {
+                period.addEventListener('dragstart', handleDragStart);
+                period.addEventListener('dragover', handleDragOver);
+                period.addEventListener('drop', handleDrop);
+            });
+        }
+
+        let draggedElement = null;
+
+        function handleDragStart(event) {
+            draggedElement = event.target;
+            event.dataTransfer.effectAllowed = 'move';
+        }
+
+        function handleDragOver(event) {
+            event.preventDefault();
+            event.dataTransfer.dropEffect = 'move';
+        }
+
+        function handleDrop(event) {
+            event.preventDefault();
+            if (event.target.className.includes('period')) {
+                const container = document.getElementById('game-container');
+                const children = Array.from(container.children);
+                const draggedIndex = children.indexOf(draggedElement);
+                const targetIndex = children.indexOf(event.target);
+
+                if (draggedIndex < targetIndex) {
+                    container.insertBefore(draggedElement, event.target.nextSibling);
+                } else {
+                    container.insertBefore(draggedElement, event.target);
+                }
+            }
+        }
+
+        document.getElementById('check-order').addEventListener('click', () => {
+            const container = document.getElementById('game-container');
+            const children = Array.from(container.children);
+            let correct = true;
+
+            children.forEach((child, index) => {
+                if (periods[index].Nombre !== child.innerText) {
+                    correct = false;
+                }
+            });
+
+            if (correct) {
+                children.forEach((child, index) => {
+                    child.classList.add('correct');
+                    child.innerText = `${periods[index].Nombre} - Fechas: ${periods[index].Fechas}, Dinastías: ${periods[index].Dinastías}`;
+                });
+            } else {
+                alert('El orden es incorrecto. Inténtalo de nuevo.');
+            }
+        });
+    </script>
+</body>
+</html>
