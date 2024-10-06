@@ -138,13 +138,18 @@
                 div.addEventListener('dragstart', dragStart);
                 div.addEventListener('dragover', dragOver);
                 div.addEventListener('drop', drop);
+                div.addEventListener('touchstart', dragStart);
+                div.addEventListener('touchmove', dragOver);
+                div.addEventListener('touchend', drop);
                 container.appendChild(div);
             });
         }
 
         let draggedElement = null;
 
+        // handle also touchstart event
         function dragStart(event) {
+          console.log('dragStart');
             draggedElement = event.target;
         }
 
