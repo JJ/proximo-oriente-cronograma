@@ -1,0 +1,47 @@
+[
+  {
+    "Nombre": "Periodo Tinita",
+    "Fechas": "3000-2593 a. C",
+    "Dinastías": "I y II"
+  },
+  {
+    "Nombre": "Reino Antiguo",
+    "Fechas": "2592-2160 a. C",
+    "Dinastías": "III-VI"
+  },
+  {
+    "Nombre": "Primer Periodo Intermedio",
+    "Fechas": "2160-2000 a. C",
+    "Dinastías": "VII-XI"
+  },
+  {
+    "Nombre": "Reino Medio",
+    "Fechas": "2130-1800 a. C",
+    "Dinastías": "XI y XII"
+  },
+  {
+    "Nombre": "Segundo Periodo Intermedio",
+    "Fechas": "1799-1554 a. C",
+    "Dinastías": "XIII-XVII"
+  },
+  {
+    "Nombre": "Reino Nuevo",
+    "Fechas": "1553-1077 a. C",
+    "Dinastías": "XVIII-XX"
+  },
+  {
+    "Nombre": "Tercer Periodo Intermedio",
+    "Fechas": "1070-656 a. C",
+    "Dinastías": "XXI-XXV"
+  },
+  {
+    "Nombre": "Época Baja",
+    "Fechas": "656-332 a. C",
+    "Dinastías": "XXVI-XXXI"
+  },
+  {
+    "Nombre": "Época Helenística",
+    "Fechas": "332-30 a. C",
+    "Dinastías": "Ptolemaica"
+  }
+]
